@@ -12,16 +12,25 @@
     <!-- 頁首導覽列 -->
     <header class="site-header">
         <div class="container navbar">
-            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 8px;">
+            <a href="#" class="logo" style="display: flex; align-items: center; gap: 8px;">
                 <img src="8888.png" alt="翰芸開發" width="40" height="40" />
                 <span>翰芸開發有限公司</span>
             </a>
-            <ul class="nav-links">
-                <li><a href="index.html#about">關於我們</a></li>
-                <li><a href="index.html#services">服務項目</a></li>
-                <li><a href="cases.html" style="color: var(--primary-color);">工程實績</a></li>
-                <li><a href="index.html#process">服務流程</a></li>
-                <li><a href="index.html#contact">線上預約</a></li>
+            
+            <!-- 新增：手機版漢堡按鈕 -->
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
+            <!-- 加入 id="nav-links" 以便 JS 控制 -->
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">關於我們</a></li>
+                <li><a href="index.html">服務項目</a></li>
+                <li><a href="index.html">工程實績</a></li>
+                <li><a href="index.html">服務流程</a></li>
+                <li><a href="index.html">線上預約</a></li>
             </ul>
         </div>
     </header>
@@ -121,6 +130,22 @@
             <span class="btn-text">LINE 諮詢</span>
         </a>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = document.getElementById('nav-links');
 
+            mobileMenu.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+
+            const links = navLinks.querySelectorAll('a');
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>

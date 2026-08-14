@@ -118,6 +118,21 @@ a {
   color: var(--primary-color);
 }
 
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  z-index: 101; /* 確保按鈕在選單上方 */
+}
+
+.menu-toggle .bar {
+  width: 25px;
+  height: 3px;
+  background-color: var(--primary-color);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
 /* ==========================================================================
    4. 主視覺英雄區 (Hero Section)
    ========================================================================== */
@@ -228,10 +243,47 @@ a {
     font-size: 1.8rem;
   }
 
-  .nav-links {
-    gap: 12px;
-    font-size: 0.9rem;
+  /* --- 新增/修改的手機版導覽列與選單樣式 --- */
+  .menu-toggle {
+    display: flex; /* 手機版顯示漢堡按鈕 */
   }
+
+  .nav-links {
+    position: absolute;
+    top: 70px; /* 貼齊 header 底部 */
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-white);
+    flex-direction: column;
+    gap: 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    
+    /* 預設隱藏並向上平移，展開時才滑出 */
+    transform: translateY(-150%);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: -1; 
+  }
+
+  /* JS 加入 active 類別時顯示選單 */
+  .nav-links.active {
+    transform: translateY(0);
+    opacity: 1;
+    z-index: 99;
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 16px 0;
+    border-top: 1px solid var(--border-color); /* 選單分隔線 */
+    font-size: 1.1rem;
+  }
+  /* --- 結束修改 --- */
 
   /* 手機端底部按鈕切換為橫向滿版釘選，方便大拇指點擊 */
   .sticky-contact-group {
